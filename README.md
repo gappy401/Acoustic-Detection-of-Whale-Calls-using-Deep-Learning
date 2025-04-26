@@ -1,17 +1,15 @@
-# Deep Learning for Acoustic Detection of North Atlantic Right Whale Calls
+#Acoustic Detection of North Atlantic Right Whale Calls
 
 ## Folder Structure
 
 The project directory is organized as follows:
 
 - **Resources/**: Contains supporting files and outputs.
-  - `Results-1.png`: Visualization of Autoencoder reconstruction results.
-  - `Results-2.png`: Enhanced CNN classification results.
-  - `Modelling-Code.ipynb`: Notebook with modeling code for whale call detection.
-  - `README.md`: Project documentation file.
-  - `requirements.txt`: File listing Python dependencies for the project.
-  - `whale_data.zip`: Compressed dataset used for analysis.
-  - `Whale-Call-Detection-DLP-Report.pdf`: Final report detailing project methodology and results.
+- `Modelling-Code.ipynb`: Notebook with modeling code for whale call detection.
+- `README.md`: Project documentation file.
+- `requirements.txt`: File listing Python dependencies for the project.
+- `whale_data.zip`: Compressed dataset used for analysis.
+- `Whale-Call-Detection-DLP-Report.pdf`: Final report detailing project methodology and results.
 
 ## Introduction
 The North Atlantic right whale is one of the most critically endangered marine species, facing severe threats from ship collisions and habitat degradation. This project aims to develop a deep learning-based algorithm to detect whale calls from audio recordings. By automating whale call detection, the project contributes to marine conservation and maritime safety, addressing challenges such as:
