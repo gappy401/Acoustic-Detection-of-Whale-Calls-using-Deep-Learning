@@ -1,32 +1,72 @@
-# Acoustic Detection of Whale Calls using Deep Learning
+# Deep Learning for Acoustic Detection of North Atlantic Right Whale Calls
 
+## Introduction
+The North Atlantic right whale is one of the most critically endangered marine species, facing severe threats from ship collisions and habitat degradation. This project aims to develop a deep learning-based algorithm to detect whale calls from audio recordings. By automating whale call detection, the project contributes to marine conservation and maritime safety, addressing challenges such as:
+- Background noise.
+- Class imbalance in data.
+- Complex whale vocalizations.
 
+The ultimate goal is to enhance real-time alerts for ship collisions and support conservation efforts globally.
 
-## Overview
-This project focuses on implementing a communication-efficient federated learning-based anomaly detection framework for Industrial Internet of Things (IIoT) applications. The system incorporates gradient compression techniques to improve efficiency and reduce the communication overhead associated with federated learning.
+## Data Overview
+The dataset comprises approximately:
+- **30,000 training samples** and **54,503 testing samples**.
+- Each sample is a 2-second `.aiff` sound clip recorded at 2 kHz, labeled as:
+  - **1 (whale call)**: Right whale vocalization.
+  - **0 (no whale call)**: Background noise or other whale sounds.
 
-## Dataset
-The dataset consists of time series data from IIoT sensors, capturing various parameters such as:
-- **TP2**: Pressure on the compressor
-- **TP3**, **H1**, **DV_pressure**, **Reservoirs**, **Oil_temperature**, **Motor_current**, etc.
-- **class**: Binary label (1 indicates an anomaly)
+### Challenges in the Dataset
+1. **Class Imbalance**: The majority of samples lack whale calls, requiring techniques like SMOTE (Synthetic Minority Over-sampling Technique) and class weighting to address imbalance.
+2. **Signal Characteristics**:
+   - Whale calls range from **100 to 500 Hz**, often featuring harmonics and overtones.
+   - Background noise exhibits random spikes and lacks tonal features.
 
-The dataset is large, with a potential class imbalance, requiring careful preprocessing and model tuning.
+## Methods
+### Feature Extraction
+Key acoustic features extracted from audio data:
+1. **Zero Crossing Rate (ZCR)**: Signal crossings through zero amplitude.
+2. **Spectral Centroid**: Weighted average of frequency components.
+3. **Mel-Frequency Cepstral Coefficients (MFCCs)**: Represent sound characteristics.
 
-## Models Used
-The project compares multiple anomaly detection models, including:
-- **CNN-LSTM**: A hybrid deep learning model combining convolutional layers with LSTMs for temporal pattern recognition.
-- **Attention Mechanism CNN-LSTM**: An enhanced version incorporating an attention mechanism to focus on critical time steps.
-- **SAE (Stacked Autoencoder)**: Used for unsupervised anomaly detection.
-- **GRU (Gated Recurrent Unit)**: A variant of RNN suitable for sequential data.
+Features like RMS (Root Mean Square) and Spectral Bandwidth were discarded as they contributed minimally to distinguishing whale calls due to controlled recording conditions.
 
-## Federated Learning Approach
-The federated learning framework consists of:
-- A **central server** aggregating global model updates.
-- **Two IIoT client nodes**, each training models on their local data.
-- **Gradient compression techniques** (such as sparsification) to optimize communication between clients and the central server.
+### Clustering
+Using the refined features (ZCR and Spectral Centroid), KMeans clustering was applied post-SMOTE to balance the data and visualize patterns. However, results showed limitations in fully separating whale calls from noise due to feature overlap.
 
-## Key Findings
-- **Gradient compression significantly reduced communication costs** while maintaining high anomaly detection accuracy.
-- The **Attention Mechanism CNN-LSTM model benefited the most**, achieving a 35% reduction in training time.
-- **Sparsification improved SAE model accuracy** from 95.5% to 97.25% by reducing noise.
+### Autoencoder
+A Convolutional Autoencoder (CAE) was employed to:
+- Extract hierarchical, high-level features from spectrograms.
+- Reduce dimensionality for effective clustering and classification.
+
+The autoencoder successfully compressed data into latent representations, paving the way for better separability in downstream tasks.
+
+### Classification Models
+Several models were tested:
+1. **Baseline CNN**: Achieved moderate accuracy (75%) but struggled with noisy data.
+2. **Enhanced CNN**:
+   - Introduced batch normalization and deeper convolutional layers.
+   - Incorporated numerical and image-based features.
+   - Addressed class imbalance with weighted loss functions.
+   - Achieved **91.73% validation accuracy** and an F1 score of **0.84**.
+
+Other techniques like Attention-Based CNN and SincNet were explored but faced limitations in handling the low-frequency nature of whale calls and short audio clips.
+
+## Results
+- The Enhanced CNN emerged as the optimal model for whale call detection, demonstrating strong generalization across noisy and imbalanced datasets.
+- Batch normalization and larger filters improved accuracy and recall, while integrated acoustic features ensured robust classification.
+
+## Challenges and Future Work
+1. **Class Imbalance**: Requires further refinement of synthetic sampling techniques to improve recall for minority classes.
+2. **Noise and Feature Overlap**: Investigate advanced filtering methods to isolate whale calls more effectively.
+3. **Low-Frequency Acoustic Features**: Explore multimodal approaches, incorporating environmental factors like temperature and salinity.
+4. **Sequential Dependencies**: Experiment with LSTM and attention-based mechanisms for longer-duration whale calls.
+
+## Conclusion
+This project demonstrates the potential of deep learning in marine conservation by developing a reliable whale call detection system. The Enhanced CNN, with its ability to handle noisy data and integrate diverse features, provides a foundation for future advancements. Additional work on clustering different whale call structures and incorporating environmental data offers promising directions for further research.
+
+## Citations
+1. [The Marinexplore and Cornell University Whale Detection Challenge](https://www.kaggle.com/c/whale-detection-challenge/data)
+2. [AI Decodes the Calls of the Wild](https://www.nature.com/immersive/d41586-024-04050-5/index.html)
+3. [SMOTE for Imbalanced Classification with Python](https://machinelearningmastery.com/smote-oversampling-for-imbalanced-classification/)
+4. [Convolutional Autoencoders](https://www.digitalocean.com/community/tutorials/convolutional-autoencoder)
+5. [MFCC's Made Easy](https://medium.com/@tanveer9812/mfccs-made-easy-7ef383006040)
