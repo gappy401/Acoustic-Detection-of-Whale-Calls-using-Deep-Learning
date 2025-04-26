@@ -1,4 +1,4 @@
-#Acoustic Detection of North Atlantic Right Whale Calls
+# Acoustic Detection of North Atlantic Right Whale Calls
 
 ## Folder Structure
 
