@@ -52,8 +52,21 @@ Several models were tested:
 Other techniques like Attention-Based CNN and SincNet were explored but faced limitations in handling the low-frequency nature of whale calls and short audio clips.
 
 ## Results
-- The Enhanced CNN emerged as the optimal model for whale call detection, demonstrating strong generalization across noisy and imbalanced datasets.
-- Batch normalization and larger filters improved accuracy and recall, while integrated acoustic features ensured robust classification.
+### Convolutional Autoencoder
+The Convolutional Autoencoder (CAE) demonstrated effective compression and reconstruction of spectrogram data, enabling improved clustering and classification.
+
+### Enhanced CNN
+The Enhanced CNN emerged as the optimal model, achieving:
+- **91.73% validation accuracy**.
+- **F1 score of 0.84**, balancing precision and recall.
+
+Below are visualizations of the results:
+
+**Result 1: Autoencoder Reconstruction**
+![Autoencoder Reconstruction](Resources/Result-1.png)
+
+**Result 2: Enhanced CNN Classification Results**
+![Enhanced CNN Classification Results](Resources/Result-2.png)
 
 ## Challenges and Future Work
 1. **Class Imbalance**: Requires further refinement of synthetic sampling techniques to improve recall for minority classes.
