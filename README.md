@@ -62,11 +62,18 @@ The Enhanced CNN emerged as the optimal model, achieving:
 
 Below are visualizations of the results:
 
-**Result 1: Autoencoder Reconstruction**
-![Autoencoder Reconstruction](Resources/Result-1.png)
+### **Result 1: Autoencoder Reconstruction**
+The Autoencoder effectively compressed spectrograms into compact latent representations, enabling reconstruction while retaining key acoustic features. This result validated the model's ability to process and preserve essential data patterns, facilitating improved feature separability for clustering and classification tasks.
 
-**Result 2: Enhanced CNN Classification Results**
-![Enhanced CNN Classification Results](Resources/Result-2.png)
+![Autoencoder Reconstruction](./Resources/Result-1.png)
+
+---
+
+### **Result 2: Enhanced CNN Classification Results**
+The Enhanced CNN achieved a validation accuracy of 91.73% and an F1 score of 0.84, demonstrating its robustness in handling noisy and imbalanced datasets. The model leveraged diverse features, including ZCR, Spectral Centroid, and MFCCs, alongside weighted loss functions to prioritize minority classes. Misclassifications were mitigated through batch normalization and deeper convolutional layers, ensuring high performance in complex underwater environments.
+
+![Enhanced CNN Classification Results](./Resources/Result-2.png)
+
 
 ## Challenges and Future Work
 1. **Class Imbalance**: Requires further refinement of synthetic sampling techniques to improve recall for minority classes.
