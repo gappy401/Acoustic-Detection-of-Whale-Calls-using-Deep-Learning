@@ -9,7 +9,7 @@ The North Atlantic right whale is one of the most critically endangered marine s
 The ultimate goal is to enhance real-time alerts for ship collisions and support conservation efforts globally.
 
 ## Data Overview
-The dataset comprises approximately:
+The [dataset](./whale_data.zip)  comprises approximately:
 - **30,000 training samples** and **54,503 testing samples**.
 - Each sample is a 2-second `.aiff` sound clip recorded at 2 kHz, labeled as:
   - **1 (whale call)**: Right whale vocalization.
