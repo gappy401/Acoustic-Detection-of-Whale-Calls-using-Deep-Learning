@@ -40,17 +40,6 @@ A Convolutional Autoencoder (CAE) was employed to:
 
 The autoencoder successfully compressed data into latent representations, paving the way for better separability in downstream tasks.
 
-### Classification Models
-Several models were tested:
-1. **Baseline CNN**: Achieved moderate accuracy (75%) but struggled with noisy data.
-2. **Enhanced CNN**:
-   - Introduced batch normalization and deeper convolutional layers.
-   - Incorporated numerical and image-based features.
-   - Addressed class imbalance with weighted loss functions.
-   - Achieved **91.73% validation accuracy** and an F1 score of **0.84**.
-
-Other techniques like Attention-Based CNN and SincNet were explored but faced limitations in handling the low-frequency nature of whale calls and short audio clips.
-
 ## Results
 ### Convolutional Autoencoder
 The Convolutional Autoencoder (CAE) demonstrated effective compression and reconstruction of spectrogram data, enabling improved clustering and classification.
